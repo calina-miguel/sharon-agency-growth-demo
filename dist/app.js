@@ -212,15 +212,16 @@ function renderFunnel() {
   const audience = form.get("audience");
   const offer = form.get("offer");
   const destination = form.get("destination");
-  const base = window.location.origin;
+  const basePath = window.location.pathname.replace(/\/$/, "");
+  const base = `${window.location.origin}${basePath}`;
   const params = new URLSearchParams({
     funnel: slugify(campaign),
     audience: slugify(audience),
     offer: slugify(offer),
     source: "email"
   });
-  const path = destination === "landing" ? "" : `#${destination}`;
-  const url = `${base}/${path}?${params.toString()}`;
+  const hash = destination === "landing" ? "" : `#${destination}`;
+  const url = `${base}/?${params.toString()}${hash}`;
   const emailCopy = `Subject: ${campaign}\n\nHi,\n\nI thought this might be useful if you have questions about life insurance options for ${audience.toLowerCase()}.\n\nYou can book a no-obligation conversation with Sharon here:\n${url}\n\nThe conversation is meant to help you understand your options. Product advice, quotes, and applications are handled by Sharon and her licensed team.\n\nBest,`;
 
   state.generatedFunnelUrl = url;
