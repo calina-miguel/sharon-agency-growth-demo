@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sharon Agency Growth Demos</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar" aria-label="Demo navigation">
+      <div class="brand">
+        <span class="brand-mark">SM</span>
+        <div>
+          <strong>Sharon Growth</strong>
+          <small>90-day pilot demos</small>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-view="overview">Overview</button>
+        <button class="nav-item" data-view="landing">Landing page</button>
+        <button class="nav-item" data-view="workflow">Follow-up</button>
+        <button class="nav-item" data-view="reporting">Reporting</button>
+        <button class="nav-item" data-view="content">Content plan</button>
+      </nav>
+      <div class="proposal-note">
+        <span>Source basis</span>
+        <p>Built from the proposal's campaign, booking, follow-up, content, and reporting scope.</p>
+      </div>
+    </aside>
+
+    <main>
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">Working demo suite</p>
+          <h1>Life insurance growth pilot</h1>
+        </div>
+        <div class="phase-meter" aria-label="90-day delivery phases">
+          <span class="phase done">Days 1-30</span>
+          <span class="phase live">Days 31-60</span>
+          <span class="phase">Days 61-90</span>
+        </div>
+      </section>
+
+      <section class="view active" id="overview">
+        <div class="band split">
+          <div>
+            <p class="eyebrow">Campaign journey</p>
+            <h2>From education to consultation</h2>
+            <p class="lead">This suite turns the proposal into four testable parts: a focused landing page, inquiry capture, structured follow-up, and outcome reporting.</p>
+          </div>
+          <div class="journey" aria-label="Customer journey">
+            <span>Ad or content</span>
+            <span>Landing page</span>
+            <span>Consultation</span>
+            <span>Application</span>
+            <span>Policy outcome</span>
+          </div>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric">
+            <span>Qualified inquiries</span>
+            <strong id="metric-qualified">42</strong>
+            <small>Within service area and agreed to contact</small>
+          </article>
+          <article class="metric">
+            <span>Consultations booked</span>
+            <strong id="metric-booked">18</strong>
+            <small>Confirmed through the booking flow</small>
+          </article>
+          <article class="metric">
+            <span>Attended meetings</span>
+            <strong id="metric-attended">13</strong>
+            <small>Useful conversations with Sharon</small>
+          </article>
+          <article class="metric">
+            <span>Placed policies</span>
+            <strong id="metric-policies">4</strong>
+            <small>Separated from pending applications</small>
+          </article>
+        </div>
+
+        <div class="demo-grid">
+          <article class="demo-card" data-open="landing">
+            <span class="demo-icon">01</span>
+            <h3>Focused landing page</h3>
+            <p>Young family offer, needs-based copy, and a consultation request form.</p>
+          </article>
+          <article class="demo-card" data-open="workflow">
+            <span class="demo-icon">02</span>
+            <h3>Lead follow-up workflow</h3>
+            <p>Inquiry tracking, reminders, and next-action states for Sharon's team.</p>
+          </article>
+          <article class="demo-card" data-open="reporting">
+            <span class="demo-icon">03</span>
+            <h3>Performance report</h3>
+            <p>Costs, conversion rates, applications, and retained commission estimates.</p>
+          </article>
+          <article class="demo-card" data-open="content">
+            <span class="demo-icon">04</span>
+            <h3>Educational content calendar</h3>
+            <p>Posts and short video ideas answering common insurance questions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="landing">
+        <div class="landing-demo">
+          <div class="landing-copy">
+            <p class="eyebrow">For young families</p>
+            <h2>Protect the people who count on you</h2>
+            <p>Book a no-obligation life insurance conversation with Sharon to discuss your needs and understand your options.</p>
+            <ul>
+              <li>Clear explanations without pressure</li>
+              <li>Coverage conversations around your budget</li>
+              <li>Next steps handled by a licensed insurance adviser</li>
+            </ul>
+          </div>
+          <form class="booking-form" id="booking-form">
+            <h3>Request a consultation</h3>
+            <label>
+              Full name
+              <input name="name" required placeholder="Jordan Rivera" />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" required placeholder="jordan@example.com" />
+            </label>
+            <label>
+              Main concern
+              <select name="concern">
+                <option>Protecting my family</option>
+                <option>Mortgage protection</option>
+                <option>Business continuity</option>
+                <option>Understanding my options</option>
+              </select>
+            </label>
+            <label>
+              Preferred time
+              <select name="time">
+                <option>Weekday morning</option>
+                <option>Weekday afternoon</option>
+                <option>Early evening</option>
+              </select>
+            </label>
+            <button type="submit">Add demo inquiry</button>
+            <p class="fineprint">This demo captures inquiry intent only. Product advice, quotes, and applications stay with Sharon and her licensed team.</p>
+          </form>
+        </div>
+        <div class="confirmation" id="confirmation" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="view" id="workflow">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Follow-up and booking</p>
+            <h2>Inquiry pipeline</h2>
+          </div>
+          <button id="advance-selected" type="button">Advance selected</button>
+        </div>
+        <div class="pipeline" id="pipeline"></div>
+      </section>
+
+      <section class="view" id="reporting">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Performance reporting</p>
+            <h2>90-day pilot scorecard</h2>
+          </div>
+          <div class="report-controls">
+            <label>Ad spend <input id="ad-spend" type="number" min="0" value="1800" /></label>
+            <label>Agency fee <input id="agency-fee" type="number" min="0" value="2400" /></label>
+          </div>
+        </div>
+        <div class="score-grid" id="score-grid"></div>
+        <div class="chart-panel">
+          <h3>Journey conversion</h3>
+          <div class="funnel" id="funnel"></div>
+        </div>
+      </section>
+
+      <section class="view" id="content">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Educational content</p>
+            <h2>Monthly publishing plan</h2>
+          </div>
+          <button id="shuffle-content" type="button">Refresh ideas</button>
+        </div>
+        <div class="content-board" id="content-board"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

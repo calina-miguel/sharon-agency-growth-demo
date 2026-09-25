@@ -4,6 +4,7 @@
   "private": true,
   "description": "Standalone GitHub Pages-ready demo suite for Sharon's 90-day life insurance agency growth pilot.",
   "scripts": {
+    "build": "node scripts/build-static.mjs",
     "start": "python -m http.server 5177",
     "serve": "python -m http.server 5177"
   }
