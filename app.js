@@ -212,7 +212,7 @@ function renderFunnel() {
   const audience = form.get("audience");
   const offer = form.get("offer");
   const destination = form.get("destination");
-  const base = "https://sharon-agency-growth-demo.blithe-gnat-4564.chatgpt.site";
+  const base = window.location.origin;
   const params = new URLSearchParams({
     funnel: slugify(campaign),
     audience: slugify(audience),

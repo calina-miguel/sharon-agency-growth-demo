@@ -27,10 +27,11 @@ http://127.0.0.1:5177
 
 ## Deployment
 
-The project can be hosted with GitHub Pages from the repository root:
+This project is ready for GitHub Pages.
 
 1. Create a new GitHub repository for this project.
 2. Push this folder's `main` branch to that repository.
-3. In GitHub, enable Pages from `main` and `/root`.
+3. In the repository settings, set Pages to use GitHub Actions.
+4. The included workflow publishes the static site after every push to `main`.
 
 No backend, database, or external service is required for the current demo.
