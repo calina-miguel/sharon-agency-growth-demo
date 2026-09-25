@@ -62,7 +62,8 @@ function renderPipeline() {
     const cards = state.leads
       .filter((lead) => lead.stage === stage)
       .map((lead) => `
-        <article class="lead-card ${lead.id === state.selectedLeadId ? "selected" : ""}">
+        <article class="lead-card ${lead.id === state.selectedLeadId ? "selected" : ""}" draggable="true" data-lead-id="${lead.id}">
+          <span class="drag-handle" aria-hidden="true">Drag</span>
           <strong>${lead.name}</strong>
           <p>${lead.concern}</p>
           <small>${lead.time} | ${lead.quality}</small>
@@ -70,7 +71,7 @@ function renderPipeline() {
           <button type="button" data-select="${lead.id}">Select</button>
         </article>
       `).join("");
-    return `<section class="pipeline-column"><h3>${stage}</h3>${cards || "<p class='fineprint'>No leads in this stage.</p>"}</section>`;
+    return `<section class="pipeline-column" data-stage="${stage}"><h3>${stage}</h3>${cards || "<p class='fineprint'>No leads in this stage.</p>"}</section>`;
   }).join("");
 }
 
@@ -286,6 +287,47 @@ document.querySelector("#pipeline").addEventListener("click", (event) => {
   state.selectedLeadId = Number(button.dataset.select);
   renderPipeline();
   renderLeadManager();
+});
+
+document.querySelector("#pipeline").addEventListener("dragstart", (event) => {
+  const card = event.target.closest(".lead-card");
+  if (!card) return;
+  event.dataTransfer.setData("text/plain", card.dataset.leadId);
+  event.dataTransfer.effectAllowed = "move";
+  card.classList.add("dragging");
+});
+
+document.querySelector("#pipeline").addEventListener("dragend", (event) => {
+  const card = event.target.closest(".lead-card");
+  if (card) card.classList.remove("dragging");
+  document.querySelectorAll(".pipeline-column").forEach((column) => column.classList.remove("drop-target"));
+});
+
+document.querySelector("#pipeline").addEventListener("dragover", (event) => {
+  const column = event.target.closest(".pipeline-column");
+  if (!column) return;
+  event.preventDefault();
+  event.dataTransfer.dropEffect = "move";
+  document.querySelectorAll(".pipeline-column").forEach((item) => item.classList.toggle("drop-target", item === column));
+});
+
+document.querySelector("#pipeline").addEventListener("dragleave", (event) => {
+  const column = event.target.closest(".pipeline-column");
+  if (!column || column.contains(event.relatedTarget)) return;
+  column.classList.remove("drop-target");
+});
+
+document.querySelector("#pipeline").addEventListener("drop", (event) => {
+  const column = event.target.closest(".pipeline-column");
+  if (!column) return;
+  event.preventDefault();
+  const leadId = Number(event.dataTransfer.getData("text/plain"));
+  const lead = state.leads.find((item) => item.id === leadId);
+  if (!lead) return;
+  lead.stage = column.dataset.stage;
+  if (lead.stage === "Outcome" && lead.quality === "Qualified") lead.quality = "Application pending";
+  state.selectedLeadId = lead.id;
+  refresh();
 });
 
 document.querySelector("#lead-table").addEventListener("click", (event) => {
