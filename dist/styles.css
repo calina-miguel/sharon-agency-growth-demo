@@ -753,6 +753,23 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .pipeline {
+    grid-template-columns: 1fr;
+    overflow-x: visible;
+  }
+
+  .pipeline-column {
+    min-height: auto;
+  }
+
+  .pipeline-column h3 {
+    margin-bottom: 10px;
+  }
+
+  .lead-card {
+    margin: 8px 0;
+  }
+
   .lead-workspace,
   .funnel-builder {
     grid-template-columns: 1fr;
