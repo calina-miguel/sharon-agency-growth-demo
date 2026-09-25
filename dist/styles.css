@@ -27,7 +27,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -182,6 +183,9 @@ h2 {
 .metric,
 .demo-card,
 .booking-form,
+.manager-form,
+.detail-panel,
+.generated-link-panel,
 .pipeline-column,
 .chart-panel,
 .score-card,
@@ -295,6 +299,9 @@ h2 {
 }
 
 .booking-form label,
+.manager-form label,
+.generated-link-panel label,
+.inline-form label,
 .report-controls label {
   display: grid;
   gap: 6px;
@@ -303,9 +310,9 @@ h2 {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
-  min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 10px 12px;
@@ -313,7 +320,20 @@ select {
   color: var(--ink);
 }
 
+input,
+select {
+  min-height: 44px;
+}
+
+textarea {
+  resize: vertical;
+}
+
 .booking-form button,
+.manager-form button,
+.inline-form button,
+.button-row button,
+.button-row a,
 .section-head button {
   min-height: 44px;
   padding: 0 16px;
@@ -321,6 +341,9 @@ select {
   background: var(--forest);
   color: #ffffff;
   font-weight: 800;
+  display: inline-grid;
+  place-items: center;
+  text-decoration: none;
 }
 
 .fineprint {
@@ -342,6 +365,137 @@ select {
   gap: 14px;
   margin-top: 16px;
   overflow-x: auto;
+}
+
+.lead-workspace,
+.funnel-builder {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  gap: 16px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+.manager-form,
+.detail-panel,
+.generated-link-panel {
+  padding: 18px;
+}
+
+.manager-form,
+.inline-form,
+.generated-link-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.detail-header,
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.status-pill {
+  border-radius: 999px;
+  background: #e4f0ed;
+  color: var(--forest);
+  padding: 7px 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.detail-grid div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fbfcfb;
+}
+
+.detail-grid dt {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.detail-grid dd {
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.lead-table {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.lead-table-head,
+.lead-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr 1fr 1fr 0.9fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+}
+
+.lead-table-head {
+  background: #e4f0ed;
+  color: var(--forest);
+  font-weight: 800;
+}
+
+.lead-row {
+  width: 100%;
+  border-top: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+}
+
+.lead-row:hover,
+.lead-row.selected {
+  background: #fbf7eb;
+}
+
+.activity-list {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.activity-list h4 {
+  margin: 12px 0 8px;
+}
+
+.activity-list p {
+  border-left: 3px solid var(--teal);
+  padding: 9px 0 9px 12px;
+  margin-bottom: 8px;
+  background: #fbfcfb;
+}
+
+.generated-url {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #eef6f3;
+  color: var(--forest);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.button-row {
+  justify-content: flex-start;
 }
 
 .pipeline-column {
@@ -449,6 +603,20 @@ select {
   .landing-demo {
     flex-direction: column;
   }
+
+  .lead-workspace,
+  .funnel-builder {
+    grid-template-columns: 1fr;
+  }
+
+  .lead-table {
+    overflow-x: auto;
+  }
+
+  .lead-table-head,
+  .lead-row {
+    min-width: 760px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -477,5 +645,14 @@ select {
 
   .report-controls input {
     width: 100%;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .button-row {
+    align-items: stretch;
+    flex-direction: column;
   }
 }

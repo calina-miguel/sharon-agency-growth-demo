@@ -18,7 +18,9 @@
       <nav>
         <button class="nav-item active" data-view="overview">Overview</button>
         <button class="nav-item" data-view="landing">Landing page</button>
+        <button class="nav-item" data-view="leads">Lead manager</button>
         <button class="nav-item" data-view="workflow">Follow-up</button>
+        <button class="nav-item" data-view="funnels">Funnel links</button>
         <button class="nav-item" data-view="reporting">Reporting</button>
         <button class="nav-item" data-view="content">Content plan</button>
       </nav>
@@ -101,6 +103,16 @@
             <h3>Educational content calendar</h3>
             <p>Posts and short video ideas answering common insurance questions.</p>
           </article>
+          <article class="demo-card" data-open="leads">
+            <span class="demo-icon">05</span>
+            <h3>Lead records and notes</h3>
+            <p>Add lead details, record notes, and schedule the next follow-up.</p>
+          </article>
+          <article class="demo-card" data-open="funnels">
+            <span class="demo-icon">06</span>
+            <h3>Click funnel links</h3>
+            <p>Generate a campaign link and email-ready invitation copy.</p>
+          </article>
         </div>
       </section>
 
@@ -150,6 +162,65 @@
         <div class="confirmation" id="confirmation" role="status" aria-live="polite"></div>
       </section>
 
+      <section class="view" id="leads">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Lead capture and CRM</p>
+            <h2>Lead manager</h2>
+          </div>
+          <button id="seed-followup" type="button">Schedule selected for tomorrow</button>
+        </div>
+        <div class="lead-workspace">
+          <form class="manager-form" id="lead-form">
+            <h3>Add a lead</h3>
+            <label>
+              Full name
+              <input name="name" required placeholder="Alex Morgan" />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" required placeholder="alex@example.com" />
+            </label>
+            <label>
+              Phone
+              <input name="phone" placeholder="(555) 013-4421" />
+            </label>
+            <label>
+              Service area
+              <input name="area" placeholder="North Dallas" />
+            </label>
+            <label>
+              Main need
+              <select name="concern">
+                <option>Protecting my family</option>
+                <option>Mortgage protection</option>
+                <option>Business continuity</option>
+                <option>Understanding my options</option>
+              </select>
+            </label>
+            <label>
+              Lead source
+              <select name="source">
+                <option>Landing page</option>
+                <option>Facebook campaign</option>
+                <option>Referral</option>
+                <option>Email link</option>
+              </select>
+            </label>
+            <label>
+              Initial note
+              <textarea name="note" rows="4" placeholder="Asked about coverage for spouse and two children."></textarea>
+            </label>
+            <button type="submit">Create lead record</button>
+          </form>
+
+          <section class="detail-panel" id="lead-detail">
+            <p class="fineprint">Select a lead to view details, add notes, and schedule follow-ups.</p>
+          </section>
+        </div>
+        <div class="lead-table" id="lead-table"></div>
+      </section>
+
       <section class="view" id="workflow">
         <div class="section-head">
           <div>
@@ -159,6 +230,58 @@
           <button id="advance-selected" type="button">Advance selected</button>
         </div>
         <div class="pipeline" id="pipeline"></div>
+      </section>
+
+      <section class="view" id="funnels">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Click funnel generator</p>
+            <h2>Campaign link builder</h2>
+          </div>
+          <button id="generate-funnel" type="button">Generate link</button>
+        </div>
+        <div class="funnel-builder">
+          <form class="manager-form" id="funnel-form">
+            <h3>Funnel setup</h3>
+            <label>
+              Campaign name
+              <input name="campaign" value="Young Family Protection" required />
+            </label>
+            <label>
+              Audience
+              <select name="audience">
+                <option>Young families</option>
+                <option>New homeowners</option>
+                <option>Self-employed professionals</option>
+                <option>Business owners</option>
+              </select>
+            </label>
+            <label>
+              Offer
+              <input name="offer" value="No-obligation life insurance conversation" required />
+            </label>
+            <label>
+              Destination
+              <select name="destination">
+                <option value="landing">Landing page</option>
+                <option value="booking">Booking request</option>
+                <option value="callback">Callback form</option>
+              </select>
+            </label>
+          </form>
+          <section class="generated-link-panel">
+            <h3>Generated send-ready link</h3>
+            <div class="generated-url" id="generated-url">Generate a link to start.</div>
+            <div class="button-row">
+              <button id="copy-link" type="button">Copy link</button>
+              <a id="email-link" href="#">Open email draft</a>
+            </div>
+            <label>
+              Email copy
+              <textarea id="email-copy" rows="8" readonly></textarea>
+            </label>
+          </section>
+        </div>
       </section>
 
       <section class="view" id="reporting">
