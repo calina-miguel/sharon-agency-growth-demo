@@ -1,6 +1,34 @@
 const stages = ["New inquiry", "Contacted", "Booked", "Outcome"];
 
+const phases = {
+  foundation: {
+    label: "Days 1-30",
+    title: "Build the foundation",
+    focus: "Audience selection, campaign offer, landing page, tracking, and follow-up setup.",
+    milestone: "Campaign ready to launch with baseline measures recorded.",
+    actions: ["Confirm primary audience", "Prepare landing page and inquiry tracking", "Approve first educational content"],
+    view: "landing"
+  },
+  launch: {
+    label: "Days 31-60",
+    title: "Launch and learn",
+    focus: "Run the first campaign, publish educational content, monitor inquiry quality, and review booking attendance.",
+    milestone: "Initial evidence of which messages generate useful conversations.",
+    actions: ["Review new inquiries", "Advance leads through follow-up", "Compare booked and attended consultations"],
+    view: "workflow"
+  },
+  evaluate: {
+    label: "Days 61-90",
+    title: "Improve and evaluate",
+    focus: "Refine targeting, address follow-up gaps, assess sales outcomes, and estimate acquisition costs.",
+    milestone: "Documented recommendation to expand, adjust, or stop each activity.",
+    actions: ["Inspect acquisition costs", "Separate pending applications from placed policies", "Prepare next-step recommendation"],
+    view: "reporting"
+  }
+};
+
 const state = {
+  selectedPhase: "launch",
   selectedLeadId: 1,
   leads: [
     { id: 1, name: "Maya Chen", email: "maya@example.com", phone: "(555) 014-1189", area: "Plano", source: "Landing page", concern: "Protecting my family", time: "Weekday afternoon", stage: "New inquiry", quality: "Qualified", notes: ["Needs coverage for spouse and two children."], followUps: [{ date: "2026-09-28", type: "Call", note: "Confirm budget range and preferred consultation time." }] },
@@ -34,6 +62,32 @@ const contentIdeas = [
 function showView(id) {
   document.querySelectorAll(".view").forEach((view) => view.classList.toggle("active", view.id === id));
   document.querySelectorAll(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.view === id));
+}
+
+function renderPhasePanel() {
+  const phase = phases[state.selectedPhase];
+  const panel = document.querySelector("#phase-panel");
+  panel.innerHTML = `
+    <div>
+      <p class="eyebrow">${phase.label}</p>
+      <h2>${phase.title}</h2>
+      <p>${phase.focus}</p>
+    </div>
+    <div class="phase-detail">
+      <span>Milestone</span>
+      <strong>${phase.milestone}</strong>
+      <ul>
+        ${phase.actions.map((action) => `<li>${action}</li>`).join("")}
+      </ul>
+      <button type="button" data-phase-view="${phase.view}">Open related demo</button>
+    </div>
+  `;
+  document.querySelectorAll(".phase").forEach((button) => {
+    const isActive = button.dataset.phase === state.selectedPhase;
+    button.classList.toggle("live", isActive);
+    button.classList.toggle("done", button.dataset.phase === "foundation" && state.selectedPhase !== "foundation");
+    button.setAttribute("aria-pressed", String(isActive));
+  });
 }
 
 function totals() {
@@ -244,6 +298,7 @@ function advanceSelectedLead() {
 }
 
 function refresh() {
+  renderPhasePanel();
   updateOverview();
   renderPipeline();
   renderLeadManager();
@@ -256,6 +311,19 @@ document.querySelectorAll(".nav-item").forEach((button) => {
 
 document.querySelectorAll("[data-open]").forEach((card) => {
   card.addEventListener("click", () => showView(card.dataset.open));
+});
+
+document.querySelectorAll(".phase").forEach((button) => {
+  button.addEventListener("click", () => {
+    state.selectedPhase = button.dataset.phase;
+    renderPhasePanel();
+  });
+});
+
+document.querySelector("#phase-panel").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-phase-view]");
+  if (!button) return;
+  showView(button.dataset.phaseView);
 });
 
 document.querySelector("#booking-form").addEventListener("submit", (event) => {

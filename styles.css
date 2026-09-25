@@ -159,6 +159,11 @@ h2 {
   white-space: nowrap;
 }
 
+.phase:hover {
+  border-color: var(--teal);
+  color: var(--forest);
+}
+
 .phase.done {
   color: var(--forest);
   border-color: #96b7ad;
@@ -168,6 +173,56 @@ h2 {
   color: #17211f;
   background: var(--gold);
   border-color: var(--gold);
+}
+
+.phase-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 18px;
+  margin-top: 22px;
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.phase-panel h2 {
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  margin-bottom: 10px;
+}
+
+.phase-panel p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.phase-detail {
+  display: grid;
+  gap: 10px;
+  border-left: 4px solid var(--gold);
+  padding-left: 16px;
+}
+
+.phase-detail span {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.phase-detail ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.phase-detail button {
+  justify-self: start;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: var(--forest);
+  color: #ffffff;
+  font-weight: 800;
 }
 
 .view {
@@ -628,6 +683,10 @@ textarea {
   .split,
   .landing-demo {
     flex-direction: column;
+  }
+
+  .phase-panel {
+    grid-template-columns: 1fr;
   }
 
   .lead-workspace,

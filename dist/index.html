@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sharon Agency Growth Demos</title>
-    <link rel="stylesheet" href="styles.css?v=20260926-2" />
+    <link rel="stylesheet" href="styles.css?v=20260926-3" />
   </head>
   <body>
     <aside class="sidebar" aria-label="Demo navigation">
@@ -37,11 +37,12 @@
           <h1>Life insurance growth pilot</h1>
         </div>
         <div class="phase-meter" aria-label="90-day delivery phases">
-          <span class="phase done">Days 1-30</span>
-          <span class="phase live">Days 31-60</span>
-          <span class="phase">Days 61-90</span>
+          <button class="phase done" type="button" data-phase="foundation">Days 1-30</button>
+          <button class="phase live" type="button" data-phase="launch">Days 31-60</button>
+          <button class="phase" type="button" data-phase="evaluate">Days 61-90</button>
         </div>
       </section>
+      <section class="phase-panel" id="phase-panel" aria-live="polite"></section>
 
       <section class="view active" id="overview">
         <div class="band split">
@@ -314,6 +315,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=20260926-2"></script>
+    <script src="app.js?v=20260926-3"></script>
   </body>
 </html>
