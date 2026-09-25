@@ -4,18 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sharon Agency Growth Demos</title>
-    <link rel="stylesheet" href="styles.css?v=20260926-5" />
+    <link rel="stylesheet" href="styles.css?v=20260926-6" />
   </head>
   <body>
     <aside class="sidebar" aria-label="Demo navigation">
-      <div class="brand">
-        <span class="brand-mark">SM</span>
-        <div>
-          <strong>Sharon Growth</strong>
-          <small>90-day pilot demos</small>
+      <div class="sidebar-head">
+        <div class="brand">
+          <span class="brand-mark">SM</span>
+          <div>
+            <strong>Sharon Growth</strong>
+            <small>90-day pilot demos</small>
+          </div>
         </div>
+        <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-      <nav>
+      <nav id="primary-nav">
         <button class="nav-item active" data-view="overview">Overview</button>
         <button class="nav-item" data-view="landing">Landing page</button>
         <button class="nav-item" data-view="leads">Lead manager</button>
@@ -315,6 +322,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=20260926-5"></script>
+    <script src="app.js?v=20260926-6"></script>
   </body>
 </html>

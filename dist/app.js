@@ -64,6 +64,15 @@ function showView(id) {
   document.querySelectorAll(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.view === id));
 }
 
+const sidebar = document.querySelector(".sidebar");
+const menuToggle = document.querySelector(".menu-toggle");
+
+function setMenuOpen(isOpen) {
+  if (!sidebar || !menuToggle) return;
+  sidebar.classList.toggle("menu-open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+}
+
 function renderPhasePanel() {
   const phase = phases[state.selectedPhase];
   const panel = document.querySelector("#phase-panel");
@@ -306,7 +315,14 @@ function refresh() {
 }
 
 document.querySelectorAll(".nav-item").forEach((button) => {
-  button.addEventListener("click", () => showView(button.dataset.view));
+  button.addEventListener("click", () => {
+    showView(button.dataset.view);
+    setMenuOpen(false);
+  });
+});
+
+menuToggle?.addEventListener("click", () => {
+  setMenuOpen(!sidebar?.classList.contains("menu-open"));
 });
 
 document.querySelectorAll("[data-open]").forEach((card) => {
