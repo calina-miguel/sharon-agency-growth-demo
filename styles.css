@@ -324,6 +324,7 @@ h2 {
   min-height: 560px;
   padding: 36px;
   border-radius: 8px;
+  flex-wrap: wrap;
   background:
     linear-gradient(90deg, rgba(16, 45, 41, 0.94), rgba(16, 45, 41, 0.64)),
     radial-gradient(circle at 85% 22%, rgba(217, 164, 65, 0.55), transparent 22%),
@@ -332,7 +333,8 @@ h2 {
 }
 
 .landing-copy {
-  max-width: 560px;
+  flex: 1 1 100%;
+  max-width: 760px;
 }
 
 .landing-copy p,
@@ -346,7 +348,9 @@ h2 {
 }
 
 .booking-form {
-  width: min(430px, 100%);
+  flex: 1 1 100%;
+  width: 100%;
+  max-width: none;
   padding: 22px;
   color: var(--ink);
   display: grid;
