@@ -126,7 +126,6 @@ function renderPipeline() {
       .filter((lead) => lead.stage === stage)
       .map((lead) => `
         <article class="lead-card ${lead.id === state.selectedLeadId ? "selected" : ""}" draggable="true" data-lead-id="${lead.id}">
-          <span class="drag-handle" title="Drag lead to another stage" aria-label="Drag lead to another stage">i</span>
           <strong>${lead.name}</strong>
           <p>${lead.concern}</p>
           <small>${lead.time} | ${lead.quality}</small>
@@ -291,19 +290,6 @@ function renderFunnel() {
   document.querySelector("#generated-url").textContent = url;
   document.querySelector("#email-copy").value = emailCopy;
   document.querySelector("#email-link").href = `mailto:?subject=${encodeURIComponent(campaign)}&body=${encodeURIComponent(emailCopy.replace(/^Subject:.*\n\n/, ""))}`;
-}
-
-function advanceSelectedLead() {
-  const lead = state.leads.find((item) => item.id === state.selectedLeadId);
-  if (!lead) return;
-  const index = stages.indexOf(lead.stage);
-  if (index < stages.length - 1) {
-    lead.stage = stages[index + 1];
-    if (lead.stage === "Outcome" && lead.quality === "Qualified") lead.quality = "Application pending";
-  } else if (lead.quality === "Application pending") {
-    lead.quality = "Policy placed";
-  }
-  refresh();
 }
 
 function refresh() {
@@ -472,7 +458,6 @@ document.querySelector("#seed-followup").addEventListener("click", () => {
   refresh();
 });
 
-document.querySelector("#advance-selected").addEventListener("click", advanceSelectedLead);
 document.querySelector("#ad-spend").addEventListener("input", renderReport);
 document.querySelector("#agency-fee").addEventListener("input", renderReport);
 document.querySelector("#generate-funnel").addEventListener("click", renderFunnel);
