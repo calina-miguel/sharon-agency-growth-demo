@@ -126,7 +126,7 @@ function renderPipeline() {
       .filter((lead) => lead.stage === stage)
       .map((lead) => `
         <article class="lead-card ${lead.id === state.selectedLeadId ? "selected" : ""}" draggable="true" data-lead-id="${lead.id}">
-          <span class="drag-handle" aria-hidden="true">Drag</span>
+          <span class="drag-handle" title="Drag lead to another stage" aria-label="Drag lead to another stage">i</span>
           <strong>${lead.name}</strong>
           <p>${lead.concern}</p>
           <small>${lead.time} | ${lead.quality}</small>

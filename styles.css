@@ -636,14 +636,17 @@ textarea {
 
 .drag-handle {
   justify-self: start;
-  border-radius: 999px;
-  padding: 4px 8px;
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid #c7d8d2;
+  border-radius: 50%;
   background: #e4f0ed;
   color: var(--forest);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0;
+  line-height: 1;
 }
 
 .lead-card button {
